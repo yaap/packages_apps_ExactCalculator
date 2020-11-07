@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2006 The Android Open Source Project
+ * Copyright (C) 2007 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,36 +16,21 @@
 
 package com.android.calculator2;
 
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.MotionEvent;
-import android.view.HapticFeedbackConstants;
 
 /**
- * A basic Button that vibrates on touch down.
+ * A basic ImageButton that vibrates on touch down.
  */
-public class HapticButton extends Button {
-    public HapticButton(Context context) {
+public class HapticImageButton extends ImageButton {
+    public HapticImageButton(Context context) {
         super(context);
         HapticButton.setupVibration(this);
     }
 
-    public HapticButton(Context context, AttributeSet attrs) {
+    public HapticImageButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         HapticButton.setupVibration(this);
-    }
-
-    static /* package-private */ void setupVibration(View view) {
-        view.setOnTouchListener((v, event) -> {
-            // Vibrate immediately on touch down, don't wait for release
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
-            }
-
-            // Passthrough
-            return false;
-        });
     }
 }
